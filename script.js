@@ -16,6 +16,7 @@ class Calculator {
     }
 
     appendNumber(number) {
+        if (number === '.' && this.currentOperand.includes('.')) return
         this.currentOperand = this.currentOperand.toString() + number.toString()
     }
 
@@ -33,8 +34,8 @@ class Calculator {
 
 } 
 
-const numeroButtons = document.querySelectorAll('[data-number]'); //Pega o número do button como objeto
-const operacaoButtons = document.querySelectorAll('[data-operation]'); //pega todos já que existe vários
+const numeroButtons = document.querySelectorAll('[data-number]'); 
+const operacaoButtons = document.querySelectorAll('[data-operation]');
 const igualButton = document.querySelector('[data-equals]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
@@ -48,5 +49,13 @@ numeroButtons.forEach(button => {
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
     })
-})
+}) 
+
+
+operacaoButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.appendNumber(button.innerText)
+        calculator.updateDisplay()
+    })
+}) 
 
